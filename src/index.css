@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    --font-display: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+    
+    /* Bakery Light Aesthetic Color Tokens */
+    --color-bakery-pink: #FFB7C5;
+    --color-bakery-pink-light: #FFCCD5;
+    --color-bakery-pink-dark: #F49EAF;
+    --color-bakery-pink-soft: #FFF0F3;
+    
+    --color-bakery-olive: #79A03F;
+    --color-bakery-olive-dark: #628233;
+    --color-bakery-olive-light: #8EB94D;
+    
+    --color-bakery-dark: #2D1E18;
+    --color-bakery-dark-muted: #5C443C;
+    --color-bakery-card: #FFFFFF;
+    --color-bakery-card-cream: #FFFDF9;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #FFB7C5;
+    color: #2D1E18;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-display {
+    font-family: var(--font-display);
+  }
+}
+
+/* Custom bakery keyframes & micro-animations */
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(0.8deg);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.03);
+  }
+}
+
+.animate-float {
+  animation: float-gentle 5s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3.5s ease-in-out infinite;
+}
+
+/* Bakery Card & Glass Style Tokens */
+.bakery-card {
+  background-color: #FFFFFF;
+  border: 1.5px solid rgba(121, 160, 63, 0.18);
+  box-shadow: 0 4px 20px -2px rgba(92, 68, 60, 0.08), 0 2px 6px -1px rgba(92, 68, 60, 0.04);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bakery-card:hover {
+  border-color: rgba(121, 160, 63, 0.5);
+  box-shadow: 0 16px 32px -6px rgba(92, 68, 60, 0.16), 0 0 15px 0 rgba(121, 160, 63, 0.15);
+  transform: translateY(-4px);
+}
+
+/* Olive Green Button Classes */
+.btn-olive {
+  background-color: #79A03F;
+  color: #FFFFFF;
+  font-weight: 700;
+  transition: all 0.25s ease;
+}
+
+.btn-olive:hover {
+  background-color: #628233;
+  box-shadow: 0 6px 20px -4px rgba(121, 160, 63, 0.5);
+  transform: translateY(-1px);
+}
+
+/* Olive Outline Button */
+.btn-olive-outline {
+  background-color: #FFFFFF;
+  color: #79A03F;
+  border: 2px solid #79A03F;
+  font-weight: 700;
+  transition: all 0.25s ease;
+}
+
+.btn-olive-outline:hover {
+  background-color: #79A03F;
+  color: #FFFFFF;
+  box-shadow: 0 6px 20px -4px rgba(121, 160, 63, 0.35);
+  transform: translateY(-1px);
+}
+
+/* Subtle scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F49EAF;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #79A03F;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #628233;
+}
