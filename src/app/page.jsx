@@ -67,13 +67,13 @@ export default function HomePage() {
       <Footer />
 
       {/* Floating Action Buttons */}
-      <div className="fixed bottom-4 left-3 sm:bottom-6 sm:left-6 z-40 flex flex-col gap-2.5">
+      <div className="fixed bottom-3 left-3 sm:bottom-6 sm:left-6 z-40 flex flex-col gap-2">
         {/* WhatsApp Direct Chat Bubble */}
         <a
           href={`https://wa.me/${bakeryInfo.whatsappRaw}?text=Hi%20cream.%20Bakery!%20I%20have%20a%20question%20about%20ordering`}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#79A03F] text-white shadow-xl hover:bg-[#628233] flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 group border-2 border-white"
+          className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#79A03F] text-white shadow-xl hover:bg-[#628233] flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 group border-2 border-white"
           aria-label="Direct WhatsApp message"
         >
           <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -84,15 +84,15 @@ export default function HomePage() {
       </div>
 
       {/* Floating Cart Quick Trigger & Scroll to Top */}
-      <div className="fixed bottom-4 right-3 sm:bottom-6 sm:right-6 z-40 flex flex-col items-end gap-2.5">
+      <div className="fixed bottom-3 right-3 sm:bottom-6 sm:right-6 z-40 flex flex-col items-end gap-2">
         {totalCartCount > 0 && !isCartOpen && (
           <button
             onClick={() => setIsCartOpen(true)}
-            className="w-11 h-11 sm:w-13 sm:h-13 rounded-full btn-olive shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 relative border-2 border-white cursor-pointer"
+            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full btn-olive shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 relative border-2 border-white cursor-pointer"
             aria-label="View Cart"
           >
-            <ShoppingBag className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-            <span className="absolute -top-1 -right-1 bg-white text-[#79A03F] text-[10px] sm:text-xs font-black w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center shadow-md border border-[#79A03F]">
+            <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+            <span className="absolute -top-1 -right-1 bg-white text-[#79A03F] text-[9px] sm:text-xs font-black w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center shadow-md border border-[#79A03F]">
               {totalCartCount}
             </span>
           </button>
@@ -101,10 +101,10 @@ export default function HomePage() {
         {showScrollTop && (
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white text-[#2D1E18] hover:bg-[#FFFDF9] shadow-md flex items-center justify-center transition-all duration-300 hover:scale-105 border border-[#2D1E18]/15 cursor-pointer"
+            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white text-[#2D1E18] hover:bg-[#FFFDF9] shadow-md flex items-center justify-center transition-all duration-300 hover:scale-105 border border-[#2D1E18]/15 cursor-pointer"
             aria-label="Scroll to top"
           >
-            <ArrowUp className="w-4 h-4 sm:w-5 sm:h-5" />
+            <ArrowUp className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
           </button>
         )}
       </div>

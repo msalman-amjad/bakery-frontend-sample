@@ -104,7 +104,7 @@ export const bakeryInfo = {
   processingTime: "2-3 Days Fresh Bake Cycle",
   whatsappNumber: "+92 300 1234567",
   whatsappRaw: "923001234567",
-  instagramHandle: "@creampk._",
+  instagramHandle: "@creampk.__",
   email: "orders@cream.pk",
   deliveryAreas: [
     "DHA (Phases 1-9)",

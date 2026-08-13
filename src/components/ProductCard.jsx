@@ -81,7 +81,7 @@ export default function ProductCard({
   };
 
   return (
-    <div className="group relative flex flex-col justify-between rounded-2xl sm:rounded-3xl bg-white border-2 border-[#79A03F]/20 hover:border-[#79A03F] p-3 sm:p-5 transition-all duration-300 hover:shadow-xl hover:shadow-[#2D1E18]/10 hover:-translate-y-1 w-full overflow-hidden">
+    <div className="group relative flex flex-col justify-between rounded-2xl sm:rounded-3xl bg-white border-2 border-[#79A03F]/20 hover:border-[#79A03F] p-2.5 xs:p-3 sm:p-5 transition-all duration-300 hover:shadow-xl hover:shadow-[#2D1E18]/10 hover:-translate-y-1 w-full overflow-hidden">
       {/* Top Image Container */}
       <div className="space-y-2 sm:space-y-4">
         <div className="relative aspect-square w-full rounded-xl sm:rounded-2xl overflow-hidden bg-[#FFF0F3] border border-[#2D1E18]/10">
@@ -151,12 +151,12 @@ export default function ProductCard({
       </div>
 
       {/* Card Footer: Price & Compact Action Stepper */}
-      <div className="pt-2.5 sm:pt-4 mt-2 sm:mt-3 border-t border-slate-100 flex items-center justify-between gap-2">
-        <div className="flex-shrink-0">
-          <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#2D1E18]/60 block leading-none mb-0.5">
+      <div className="pt-2 sm:pt-4 mt-2 sm:mt-3 border-t border-slate-100 flex items-center justify-between gap-1.5">
+        <div className="flex-shrink-0 min-w-0">
+          <span className="text-[8px] xs:text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#2D1E18]/60 block leading-none mb-0.5">
             Price
           </span>
-          <div className="text-sm sm:text-base md:text-lg font-black text-[#2D1E18] font-display">
+          <div className="text-xs xs:text-sm sm:text-base md:text-lg font-black text-[#2D1E18] font-display whitespace-nowrap">
             Rs. {product.price.toLocaleString()}
           </div>
         </div>
@@ -164,35 +164,35 @@ export default function ProductCard({
         {/* Dynamic Stepper: Compact & Snug Together */}
         <div className="flex-shrink-0">
           {quantity > 0 ? (
-            <div className="inline-flex items-center gap-1 sm:gap-1.5 bg-[#FFF0F3] border-2 border-[#79A03F] rounded-xl sm:rounded-2xl p-0.5 sm:p-1 shadow-xs">
+            <div className="inline-flex items-center gap-0.5 sm:gap-1.5 bg-[#FFF0F3] border-2 border-[#79A03F] rounded-lg sm:rounded-2xl p-0.5 sm:p-1 shadow-2xs">
               <button
                 onClick={handleMinus}
-                className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-white border border-[#79A03F]/40 text-[#79A03F] hover:bg-[#79A03F] hover:text-white font-black flex items-center justify-center transition-all cursor-pointer active:scale-90 shadow-2xs"
+                className="w-5 h-5 xs:w-6 xs:h-6 sm:w-7 sm:h-7 rounded-md sm:rounded-lg bg-white border border-[#79A03F]/40 text-[#79A03F] hover:bg-[#79A03F] hover:text-white font-black flex items-center justify-center transition-all cursor-pointer active:scale-90 shadow-2xs"
                 aria-label="Decrease quantity"
                 title="Decrease quantity"
               >
-                <Minus className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                <Minus className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5" />
               </button>
 
-              <span className="text-xs sm:text-sm font-black text-[#2D1E18] px-1.5 min-w-[1.2rem] text-center font-display leading-none">
+              <span className="text-[11px] xs:text-xs sm:text-sm font-black text-[#2D1E18] px-1 sm:px-1.5 min-w-[1rem] sm:min-w-[1.2rem] text-center font-display leading-none">
                 {quantity}
               </span>
 
               <button
                 onClick={handlePlus}
-                className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-[#79A03F] text-white font-black flex items-center justify-center hover:bg-[#628233] transition-colors cursor-pointer active:scale-90 shadow-2xs"
+                className="w-5 h-5 xs:w-6 xs:h-6 sm:w-7 sm:h-7 rounded-md sm:rounded-lg bg-[#79A03F] text-white font-black flex items-center justify-center hover:bg-[#628233] transition-colors cursor-pointer active:scale-90 shadow-2xs"
                 aria-label="Increase quantity"
                 title="Increase quantity"
               >
-                <Plus className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                <Plus className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5" />
               </button>
             </div>
           ) : (
             <button
               onClick={handlePlus}
-              className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl btn-olive text-[11px] sm:text-xs font-extrabold inline-flex items-center justify-center gap-1 shadow-xs cursor-pointer active:scale-95 transition-all"
+              className="px-2.5 xs:px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl btn-olive text-[10px] xs:text-[11px] sm:text-xs font-black inline-flex items-center justify-center gap-1 shadow-xs cursor-pointer active:scale-95 transition-all whitespace-nowrap"
             >
-              <Plus className="w-3.5 h-3.5" />
+              <Plus className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
               <span>Add</span>
             </button>
           )}
