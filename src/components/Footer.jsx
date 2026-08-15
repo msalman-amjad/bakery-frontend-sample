@@ -66,11 +66,6 @@ export default function Footer() {
                   Dietary Standards
                 </a>
               </li>
-              <li>
-                <a href="/#faq" className="hover:text-[#79A03F] transition-colors">
-                  FAQ & Delivery
-                </a>
-              </li>
             </ul>
           </nav>
 

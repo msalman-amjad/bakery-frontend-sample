@@ -8,7 +8,6 @@ import FeaturedProducts from '../components/FeaturedProducts';
 import DietarySection from '../components/DietarySection';
 import Reviews from '../components/Reviews';
 import InstagramFeed from '../components/InstagramFeed';
-import FaqSection from '../components/FaqSection';
 import Footer from '../components/Footer';
 import FloatingBakeryItems from '../components/FloatingBakeryItems';
 import { bakeryInfo } from '../data/menuData';
@@ -61,9 +60,6 @@ export default function HomeClient() {
 
         {/* 6. Instagram Showcase */}
         <InstagramFeed />
-
-        {/* 7. FAQ */}
-        <FaqSection />
       </main>
 
       {/* 3. Footer */}

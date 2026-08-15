@@ -34,7 +34,6 @@ export default function Navbar() {
     { name: 'How It Works', href: '/#how-to-order' },
     { name: 'Dietary', href: '/#dietary' },
     { name: 'Reviews', href: '/#reviews' },
-    { name: 'FAQ', href: '/#faq' },
   ];
 
   return (
