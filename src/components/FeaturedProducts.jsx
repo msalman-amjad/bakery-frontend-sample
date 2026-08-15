@@ -5,80 +5,67 @@ import Link from 'next/link';
 import ProductCard from './ProductCard';
 import { initialProducts } from '../data/menuData';
 import { useCart } from '../context/CartContext';
-import { Sparkles, ArrowRight, Flame } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export default function FeaturedProducts() {
   const { addToCart, updateQuantity, getItemQuantity } = useCart();
-  
-  // Pick the top 4 signature/bestseller items for the Home Page
   const featured = initialProducts.slice(0, 4);
 
   return (
-    <section id="featured-treats" className="py-12 sm:py-16 md:py-24 relative bg-[#FFB7C5] w-full">
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 w-full">
+    <section
+      id="featured-treats"
+      aria-labelledby="featured-heading"
+      className="py-10 sm:py-14 md:py-18 w-full bg-transparent"
+    >
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-8 sm:mb-12">
-          <div className="space-y-2 text-center md:text-left">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-[#79A03F] border border-[#79A03F]/30 text-[11px] sm:text-xs font-extrabold shadow-xs">
-              <Flame className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
-              <span>Lahore Favorites</span>
-            </div>
-
-            <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black text-[#2D1E18] font-display tracking-tight">
-              Signature Bestsellers<span className="text-[#79A03F]">.</span>
+        <header className="flex items-center justify-between gap-4 mb-6 sm:mb-8 pb-1">
+          <div>
+            <span className="text-xs font-black uppercase tracking-wider text-[#79A03F] block">
+              Artisanal Favorites
+            </span>
+            <h2
+              id="featured-heading"
+              className="text-2xl sm:text-3xl md:text-4xl font-black text-[#2D1E18] font-display"
+            >
+              Signature Bestsellers
             </h2>
-
-            <p className="text-xs sm:text-base text-[#2D1E18]/85 font-medium max-w-xl">
-              Our most-craved artisanal batches. Baked from scratch with pure Belgian couverture chocolate.
-            </p>
           </div>
 
           <Link
             href="/menu"
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl btn-olive-outline text-xs sm:text-sm font-black shadow-xs cursor-pointer hover:shadow-md transition-all flex-shrink-0"
+            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#79A03F] hover:text-[#628233] transition-colors flex-shrink-0"
           >
-            <span>View Full Menu & All Treats</span>
-            <ArrowRight className="w-4 h-4" />
+            <span>View Full Menu</span>
+            <ArrowRight className="w-4 h-4" aria-hidden="true" />
           </Link>
-        </div>
+        </header>
 
-        {/* 2-column mobile, 4-column desktop grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 w-full">
+        {/* Semantic Product List with Stretched Equal-Height Cards */}
+        <ul role="list" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 w-full items-stretch">
           {featured.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              onAddToCart={addToCart}
-              onUpdateQuantity={updateQuantity}
-              cartQuantity={getItemQuantity(product.id)}
-            />
+            <li key={product.id} className="h-full flex flex-col">
+              <ProductCard
+                product={product}
+                onAddToCart={addToCart}
+                onUpdateQuantity={updateQuantity}
+                cartQuantity={getItemQuantity(product.id)}
+              />
+            </li>
           ))}
-        </div>
+        </ul>
 
-        {/* Bottom Banner CTA */}
-        <div className="mt-10 sm:mt-14 rounded-2xl sm:rounded-3xl bg-white border-2 border-[#79A03F]/30 p-6 sm:p-8 shadow-md text-center space-y-4">
-          <div className="max-w-xl mx-auto space-y-1.5">
-            <div className="inline-flex items-center gap-1 text-[#79A03F] text-xs font-black uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Looking for Cake Loafs or Custom Boxes?</span>
-            </div>
-            <h3 className="text-lg sm:text-2xl font-black text-[#2D1E18] font-display">
-              Explore Our Complete Artisanal Collection
-            </h3>
-            <p className="text-xs sm:text-sm text-[#2D1E18]/80 font-medium">
-              Discover our espresso chocolate loaf, gluten-free caramel brownies, and 6-pack cinnamon rolls.
-            </p>
-          </div>
-
+        {/* Minimalist, Compact Menu Discovery Link */}
+        <nav aria-label="Menu navigation" className="mt-8 sm:mt-10 text-center">
           <Link
             href="/menu"
-            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-2xl btn-olive text-xs sm:text-sm font-extrabold shadow-md shadow-[#79A03F]/30 hover:shadow-lg cursor-pointer"
+            className="inline-flex items-center justify-center gap-2 h-10 px-6 rounded-full btn-olive text-xs font-bold shadow-xs transition-all hover:scale-105 active:scale-95"
           >
-            <span>Browse Full Bakery Menu</span>
-            <ArrowRight className="w-4 h-4" />
+            <span>Explore All 6 Bakes & Boxes</span>
+            <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
           </Link>
-        </div>
+        </nav>
 
       </div>
     </section>

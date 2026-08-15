@@ -4,48 +4,37 @@ import React, { useEffect } from 'react';
 import Link from 'next/link';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { RefreshCw, Home, AlertCircle } from 'lucide-react';
+import { RefreshCw, Home } from 'lucide-react';
 
 export default function Error({ error, reset }) {
   useEffect(() => {
-    // Log runtime error details safely
     console.error('Runtime error caught by boundary:', error);
   }, [error]);
 
   return (
     <div className="min-h-screen bg-[#FFB7C5] flex flex-col selection:bg-[#79A03F] selection:text-white w-full overflow-x-hidden">
-      {/* Header with Clickable Logo */}
       <Navbar />
 
-      {/* Main Error Body */}
-      <main className="flex-1 flex items-center justify-center py-16 sm:py-24 px-4 sm:px-6 lg:px-8 w-full">
-        <div className="max-w-md w-full text-center space-y-6 bg-white/95 backdrop-blur-md rounded-3xl p-8 sm:p-10 border-2 border-[#79A03F]/30 shadow-2xl animate-in zoom-in-95 duration-300">
+      <main className="flex-1 flex items-center justify-center py-12 sm:py-20 px-4 sm:px-6 lg:px-8 w-full bg-[#FFB7C5]">
+        <div className="max-w-md w-full text-center space-y-4 bg-white p-6 sm:p-8 rounded-3xl border-2 border-[#79A03F]/20 shadow-xl">
           
-          {/* Bakery Error Icon */}
-          <div className="relative inline-block">
-            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-[#FFF0F3] border-2 border-dashed border-amber-400 flex items-center justify-center mx-auto text-4xl sm:text-5xl shadow-inner">
-              🍪
-            </div>
-            <div className="absolute -bottom-1 -right-1 bg-amber-500 text-white p-1 rounded-full shadow-md">
-              <AlertCircle className="w-4 h-4" />
-            </div>
+          <div className="w-14 h-14 rounded-full bg-[#FFF0F3] flex items-center justify-center mx-auto text-2xl">
+            🍪
           </div>
 
-          {/* Error Copy */}
-          <div className="space-y-2">
-            <h1 className="text-xl sm:text-2xl font-black text-[#2D1E18] font-display tracking-tight leading-snug">
-              Something Got a Little Crispy in the Oven!
+          <div className="space-y-1">
+            <h1 className="text-xl sm:text-2xl font-black text-[#2D1E18] font-display">
+              Something Went Wrong
             </h1>
-            <p className="text-xs sm:text-sm text-[#2D1E18]/80 font-medium leading-relaxed">
-              An unexpected glitch occurred while baking this page. Don’t worry, no chocolate was harmed!
+            <p className="text-xs text-[#2D1E18]/70 font-medium">
+              An unexpected error occurred while loading this page.
             </p>
           </div>
 
-          {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+          <div className="flex flex-wrap items-center justify-center gap-2 pt-1">
             <button
               onClick={() => reset()}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-2xl btn-olive text-xs sm:text-sm font-extrabold shadow-md cursor-pointer transition-all active:scale-95"
+              className="h-9 px-4 rounded-full btn-olive text-xs font-bold inline-flex items-center justify-center gap-1.5 cursor-pointer"
             >
               <RefreshCw className="w-3.5 h-3.5" />
               <span>Try Again</span>
@@ -53,7 +42,7 @@ export default function Error({ error, reset }) {
 
             <Link
               href="/"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-2xl btn-olive-outline text-xs sm:text-sm font-extrabold shadow-xs cursor-pointer transition-all hover:shadow-md"
+              className="h-9 px-4 rounded-full btn-olive-outline text-xs font-bold inline-flex items-center justify-center gap-1.5"
             >
               <Home className="w-3.5 h-3.5" />
               <span>Return Home</span>
@@ -63,7 +52,6 @@ export default function Error({ error, reset }) {
         </div>
       </main>
 
-      {/* Footer */}
       <Footer />
     </div>
   );

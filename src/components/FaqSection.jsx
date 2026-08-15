@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ChevronDown, HelpCircle } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import { faqList } from '../data/menuData';
 
 export default function FaqSection() {
@@ -12,60 +12,76 @@ export default function FaqSection() {
   };
 
   return (
-    <section id="faq" className="py-8 sm:py-12 lg:py-16 relative scroll-mt-16 bg-[#FFB7C5] w-full">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <section
+      id="faq"
+      aria-labelledby="faq-heading"
+      className="py-10 sm:py-14 md:py-18 w-full bg-transparent"
+    >
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         
-        {/* Section Heading */}
-        <div className="text-center space-y-2 sm:space-y-3 mb-6 sm:mb-8">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-[#79A03F] border border-[#79A03F]/30 text-[11px] sm:text-xs font-extrabold shadow-xs">
-            <HelpCircle className="w-3.5 h-3.5" />
-            <span>Got Questions?</span>
-          </div>
-
-          <h2 className="text-2xl xs:text-3xl sm:text-4xl font-black text-[#2D1E18] font-display tracking-tight">
-            Frequently Asked Questions<span className="text-[#79A03F]">.</span>
+        {/* Section Header */}
+        <header className="text-center space-y-1.5 mb-6 sm:mb-10">
+          <span className="text-xs font-black uppercase tracking-wider text-[#79A03F]">
+            Common Queries
+          </span>
+          <h2
+            id="faq-heading"
+            className="text-2xl sm:text-3xl md:text-4xl font-black text-[#2D1E18] font-display"
+          >
+            Questions & Answers
           </h2>
-
-          <p className="text-xs sm:text-sm md:text-base text-[#2D1E18]/85 font-medium px-2 max-w-xl mx-auto">
-            Everything you need to know about our ingredients, ordering schedule, and Lahore delivery.
+          <p className="text-xs sm:text-sm text-[#2D1E18]/80 font-medium">
+            Everything you need to know about ingredients and Lahore delivery.
           </p>
-        </div>
+        </header>
 
-        {/* FAQ Accordion */}
-        <div className="space-y-3 sm:space-y-3.5">
+        {/* Semantic Definition List */}
+        <dl className="space-y-2.5">
           {faqList.map((faq, idx) => {
             const isOpen = openIdx === idx;
+            const questionId = `faq-question-${idx}`;
+            const answerId = `faq-answer-${idx}`;
+
             return (
               <div
                 key={idx}
-                className="rounded-2xl sm:rounded-3xl bg-white border-2 border-[#79A03F]/20 overflow-hidden shadow-xs transition-all duration-200"
+                className="rounded-2xl bg-white border-2 border-[#79A03F]/20 hover:border-[#79A03F] overflow-hidden shadow-xs transition-all duration-200"
               >
-                <button
-                  onClick={() => toggle(idx)}
-                  className="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-3 cursor-pointer focus:outline-none"
-                  aria-expanded={isOpen}
-                >
-                  <span className="text-sm sm:text-base md:text-lg font-black text-[#2D1E18] font-display pr-2 leading-snug">
-                    {faq.q}
-                  </span>
-                  <div
-                    className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-transform duration-300 ${
-                      isOpen ? 'rotate-180 bg-[#79A03F] text-white' : 'bg-[#FFF0F3] text-[#79A03F]'
-                    }`}
+                <dt>
+                  <button
+                    id={questionId}
+                    onClick={() => toggle(idx)}
+                    aria-expanded={isOpen}
+                    aria-controls={answerId}
+                    className="w-full min-h-[48px] p-3.5 sm:p-4 text-left flex items-center justify-between gap-3 cursor-pointer focus:outline-none"
                   >
-                    <ChevronDown className="w-4 h-4" />
-                  </div>
-                </button>
+                    <span className="text-xs sm:text-sm md:text-base font-black text-[#2D1E18] pr-2">
+                      {faq.q}
+                    </span>
+                    <div
+                      className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 transition-transform duration-300 ${
+                        isOpen ? 'rotate-180 bg-[#79A03F] text-white' : 'bg-[#FFF0F3] text-[#79A03F]'
+                      }`}
+                      aria-hidden="true"
+                    >
+                      <ChevronDown className="w-3.5 h-3.5" />
+                    </div>
+                  </button>
+                </dt>
 
                 {isOpen && (
-                  <div className="px-4 pb-4 sm:px-5 sm:pb-5 pt-0 text-xs sm:text-sm text-[#2D1E18]/85 leading-relaxed font-medium border-t border-slate-100 animate-in fade-in duration-200">
+                  <dd
+                    id={answerId}
+                    aria-labelledby={questionId}
+                    className="px-3.5 pb-3.5 sm:px-4 sm:pb-4 pt-0 text-xs sm:text-sm text-[#2D1E18]/85 leading-relaxed font-medium border-t border-slate-100 animate-in fade-in duration-200 m-0"
+                  >
                     <p className="pt-2.5">{faq.a}</p>
-                  </div>
+                  </dd>
                 )}
               </div>
             );
           })}
-        </div>
+        </dl>
 
       </div>
     </section>

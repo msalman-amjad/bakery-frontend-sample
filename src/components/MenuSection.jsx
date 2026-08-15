@@ -4,7 +4,7 @@ import React, { useState, useMemo } from 'react';
 import ProductCard from './ProductCard';
 import { dietaryFilters, categoryFilters, initialProducts } from '../data/menuData';
 import { useCart } from '../context/CartContext';
-import { Sparkles, Search, ShieldCheck, RefreshCw } from 'lucide-react';
+import { Search } from 'lucide-react';
 
 export default function MenuSection({ products = initialProducts, isStandalonePage = false }) {
   const { addToCart, updateQuantity, getItemQuantity } = useCart();
@@ -12,7 +12,6 @@ export default function MenuSection({ products = initialProducts, isStandalonePa
   const [selectedDietary, setSelectedDietary] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Filtered product list
   const filteredProducts = useMemo(() => {
     return products.filter((product) => {
       const matchCategory =
@@ -39,43 +38,54 @@ export default function MenuSection({ products = initialProducts, isStandalonePa
     setSearchQuery('');
   };
 
+  const HeadingTag = isStandalonePage ? 'h1' : 'h2';
+
   return (
-    <section id="menu" className={`py-10 sm:py-16 relative scroll-mt-20 bg-[#FFB7C5] w-full ${isStandalonePage ? 'pt-4 sm:pt-8' : ''}`}>
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 w-full">
+    <section
+      id="menu"
+      aria-labelledby="menu-heading"
+      className={`py-8 sm:py-12 md:py-16 w-full bg-transparent ${isStandalonePage ? 'pt-3 sm:pt-6' : ''}`}
+    >
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4 mb-8 sm:mb-12">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-[#79A03F] border border-[#79A03F]/30 text-[11px] sm:text-xs font-extrabold shadow-xs">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Complete Small-Batch Menu</span>
-          </div>
-
-          <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black text-[#2D1E18] font-display tracking-tight">
-            All Baked Treats<span className="text-[#79A03F]">.</span>
-          </h2>
-
-          <p className="text-xs sm:text-base text-[#2D1E18]/85 font-medium px-2">
-            Handcrafted with Belgian chocolates, rich brown sugar caramels, and dedicated gluten-free & egg-free recipes.
+        <header className="text-center max-w-xl mx-auto space-y-1 mb-6 sm:mb-8">
+          <span className="text-xs font-black uppercase tracking-wider text-[#79A03F]">
+            Handcrafted Selection
+          </span>
+          <HeadingTag
+            id="menu-heading"
+            className="text-2xl sm:text-3xl md:text-4xl font-black text-[#2D1E18] font-display"
+          >
+            Bakery Menu
+          </HeadingTag>
+          <p className="text-xs sm:text-sm text-[#2D1E18]/80 font-medium">
+            Fresh Belgian chocolate bakes, gluten-free treats, and eggless loaves in Lahore.
           </p>
-        </div>
+        </header>
 
-        {/* Filter Controls Bar */}
-        <div className="bg-white/95 backdrop-blur-md rounded-2xl sm:rounded-3xl p-3.5 sm:p-6 border-2 border-[#79A03F]/20 shadow-md mb-6 sm:mb-10 space-y-4 w-full">
+        {/* Minimalist Controls */}
+        <div className="bg-white/95 backdrop-blur-md rounded-2xl sm:rounded-3xl p-3 sm:p-5 border-2 border-[#79A03F]/20 shadow-md space-y-3.5 mb-6 sm:mb-8">
           
-          {/* Top Row: Search & Category Tabs */}
-          <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 sm:gap-4 w-full">
+          {/* Top Row: Search & Category Pills */}
+          <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
             
-            {/* Category Filter Tabs */}
-            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-1.5 sm:gap-2">
+            {/* Category Pills */}
+            <div
+              role="group"
+              aria-label="Filter products by category"
+              className="flex flex-wrap items-center gap-1.5"
+            >
               {categoryFilters.map((cat) => {
                 const isActive = selectedCategory === cat.id;
                 return (
                   <button
                     key={cat.id}
                     onClick={() => setSelectedCategory(cat.id)}
-                    className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl sm:rounded-2xl text-[11px] sm:text-xs md:text-sm font-extrabold transition-all cursor-pointer ${
+                    aria-pressed={isActive}
+                    className={`h-8 px-3.5 rounded-full text-xs font-black transition-all cursor-pointer ${
                       isActive
-                        ? 'bg-[#79A03F] text-white shadow-sm'
+                        ? 'bg-[#79A03F] text-white shadow-xs'
                         : 'bg-[#FFF0F3] text-[#2D1E18] hover:bg-[#FFCCD5] border border-[#2D1E18]/10'
                     }`}
                   >
@@ -85,20 +95,28 @@ export default function MenuSection({ products = initialProducts, isStandalonePa
               })}
             </div>
 
-            {/* Live Search Input */}
-            <div className="relative w-full md:w-72">
-              <Search className="w-4 h-4 text-[#2D1E18]/50 absolute left-3 top-1/2 -translate-y-1/2" />
+            {/* Search Input */}
+            <div role="search" className="relative w-full md:w-60">
+              <label htmlFor="menu-search-input" className="sr-only">
+                Search bakery treats
+              </label>
+              <Search
+                className="w-3.5 h-3.5 text-[#2D1E18]/50 absolute left-3 top-1/2 -translate-y-1/2"
+                aria-hidden="true"
+              />
               <input
-                type="text"
-                placeholder="Search menu treats..."
+                id="menu-search-input"
+                type="search"
+                placeholder="Search treats..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-9 pr-8 py-2 sm:py-2.5 rounded-xl sm:rounded-2xl bg-[#FFF0F3] border border-[#2D1E18]/15 text-xs sm:text-sm text-[#2D1E18] placeholder-[#2D1E18]/50 focus:outline-none focus:border-[#79A03F] transition-all"
+                className="w-full h-8.5 pl-8 pr-7 rounded-full bg-[#FFF0F3] border border-[#2D1E18]/15 text-xs text-[#2D1E18] placeholder-[#2D1E18]/50 focus:outline-none focus:border-[#79A03F] transition-all"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs font-black text-[#2D1E18]/60 hover:text-[#2D1E18]"
+                  aria-label="Clear search"
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs font-black text-[#2D1E18]/60"
                 >
                   ✕
                 </button>
@@ -107,11 +125,14 @@ export default function MenuSection({ products = initialProducts, isStandalonePa
 
           </div>
 
-          {/* Bottom Row: Dietary Preference Pills */}
-          <div className="pt-3 sm:pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2.5 text-xs">
-            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
-              <span className="font-black text-[#2D1E18] flex items-center gap-1 uppercase tracking-wider text-[10px] sm:text-[11px]">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#79A03F]" />
+          {/* Bottom Row: Dietary Options */}
+          <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-100">
+            <div
+              role="group"
+              aria-label="Filter products by dietary preference"
+              className="flex flex-wrap items-center gap-1.5"
+            >
+              <span className="text-[11px] font-black text-[#2D1E18] mr-0.5">
                 Dietary:
               </span>
               {dietaryFilters.map((diet) => {
@@ -120,9 +141,10 @@ export default function MenuSection({ products = initialProducts, isStandalonePa
                   <button
                     key={diet.id}
                     onClick={() => setSelectedDietary(diet.id)}
-                    className={`px-2.5 py-1 rounded-lg sm:rounded-xl font-extrabold text-[10px] sm:text-xs transition-all cursor-pointer ${
+                    aria-pressed={isActive}
+                    className={`h-6.5 px-2.5 rounded-full text-[10px] sm:text-[11px] font-black transition-all cursor-pointer ${
                       isActive
-                        ? 'bg-[#79A03F] text-white shadow-xs'
+                        ? 'bg-[#79A03F] text-white shadow-2xs'
                         : 'bg-[#FFF0F3] text-[#2D1E18] hover:bg-[#FFCCD5] border border-[#2D1E18]/10'
                     }`}
                   >
@@ -132,44 +154,36 @@ export default function MenuSection({ products = initialProducts, isStandalonePa
               })}
             </div>
 
-            {/* Results counter */}
-            <div className="text-[11px] sm:text-xs font-extrabold text-[#2D1E18]/70">
+            <div aria-live="polite" className="text-[11px] font-bold text-[#2D1E18]/70">
               Showing <span className="text-[#79A03F] font-black">{filteredProducts.length}</span> item{filteredProducts.length === 1 ? '' : 's'}
             </div>
           </div>
 
         </div>
 
-        {/* Product Grid: 2 columns on mobile, 3 columns on desktop */}
+        {/* Product Grid */}
         {filteredProducts.length > 0 ? (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3 sm:gap-6 lg:gap-8 w-full">
+          <ul role="list" className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-5 w-full">
             {filteredProducts.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                onAddToCart={addToCart}
-                onUpdateQuantity={updateQuantity}
-                cartQuantity={getItemQuantity(product.id)}
-              />
+              <li key={product.id}>
+                <ProductCard
+                  product={product}
+                  onAddToCart={addToCart}
+                  onUpdateQuantity={updateQuantity}
+                  cartQuantity={getItemQuantity(product.id)}
+                />
+              </li>
             ))}
-          </div>
+          </ul>
         ) : (
-          <div className="text-center py-12 px-4 rounded-3xl bg-white border-2 border-dashed border-[#79A03F]/40 max-w-md mx-auto space-y-3 shadow-xs">
-            <div className="w-14 h-14 rounded-full bg-[#FFF0F3] text-2xl flex items-center justify-center mx-auto">
-              🍪
-            </div>
-            <div className="space-y-1">
-              <h3 className="text-base font-black text-[#2D1E18]">No treats found</h3>
-              <p className="text-xs text-[#2D1E18]/70">
-                Try clearing your search or choosing another dietary filter.
-              </p>
-            </div>
+          <div className="text-center py-10 px-4 rounded-3xl bg-white border-2 border-dashed border-[#79A03F]/40 max-w-sm mx-auto space-y-2.5">
+            <div className="text-2xl" aria-hidden="true">🍪</div>
+            <p className="text-xs text-[#2D1E18]/70 font-bold">No treats match your filters.</p>
             <button
               onClick={resetFilters}
-              className="inline-flex items-center gap-1 px-4 py-2 rounded-xl btn-olive text-xs font-bold shadow-xs cursor-pointer"
+              className="h-8 px-4 rounded-full btn-olive text-xs font-bold cursor-pointer"
             >
-              <RefreshCw className="w-3.5 h-3.5" />
-              <span>Reset Filters</span>
+              Reset Filters
             </button>
           </div>
         )}

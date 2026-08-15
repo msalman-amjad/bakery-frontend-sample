@@ -2,14 +2,14 @@
 
 @layer base {
   :root {
-    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    --font-display: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+    --font-sans: 'Fredoka', 'Outfit', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-display: 'Fredoka', 'Outfit', sans-serif;
     
-    /* Bakery Light Aesthetic Color Tokens */
+    /* Bakery Brand Palette */
     --color-bakery-pink: #FFB7C5;
     --color-bakery-pink-light: #FFCCD5;
-    --color-bakery-pink-dark: #F49EAF;
     --color-bakery-pink-soft: #FFF0F3;
+    --color-bakery-pink-dark: #F49EAF;
     
     --color-bakery-olive: #79A03F;
     --color-bakery-olive-dark: #628233;
@@ -18,114 +18,158 @@
     --color-bakery-dark: #2D1E18;
     --color-bakery-dark-muted: #5C443C;
     --color-bakery-card: #FFFFFF;
-    --color-bakery-card-cream: #FFFDF9;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
   }
 
   body {
     font-family: var(--font-sans);
     background-color: #FFB7C5;
     color: #2D1E18;
+    overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6, .font-display {
     font-family: var(--font-display);
+    letter-spacing: -0.01em;
   }
 }
 
-/* Custom bakery keyframes & micro-animations */
-@keyframes float-gentle {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-6px) rotate(0.8deg);
-  }
-}
-
-@keyframes pulse-glow {
-  0%, 100% {
-    opacity: 0.6;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.9;
-    transform: scale(1.03);
-  }
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
-}
-
-.animate-float {
-  animation: float-gentle 5s ease-in-out infinite;
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 3.5s ease-in-out infinite;
-}
-
-/* Bakery Card & Glass Style Tokens */
-.bakery-card {
+/* Minimalist Card */
+.glass-card {
   background-color: #FFFFFF;
-  border: 1.5px solid rgba(121, 160, 63, 0.18);
-  box-shadow: 0 4px 20px -2px rgba(92, 68, 60, 0.08), 0 2px 6px -1px rgba(92, 68, 60, 0.04);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1.5px solid rgba(121, 160, 63, 0.25);
+  box-shadow: 0 4px 20px -2px rgba(45, 30, 24, 0.06);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.bakery-card:hover {
-  border-color: rgba(121, 160, 63, 0.5);
-  box-shadow: 0 16px 32px -6px rgba(92, 68, 60, 0.16), 0 0 15px 0 rgba(121, 160, 63, 0.15);
-  transform: translateY(-4px);
+.glass-card:hover {
+  background-color: #FFFFFF;
+  border-color: #79A03F;
+  box-shadow: 0 10px 25px -4px rgba(45, 30, 24, 0.1);
 }
 
-/* Olive Green Button Classes */
+/* Compact, Minimalist Olive Button */
 .btn-olive {
   background-color: #79A03F;
   color: #FFFFFF;
   font-weight: 700;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
 }
 
 .btn-olive:hover {
   background-color: #628233;
-  box-shadow: 0 6px 20px -4px rgba(121, 160, 63, 0.5);
-  transform: translateY(-1px);
+  box-shadow: 0 4px 14px -2px rgba(121, 160, 63, 0.4);
 }
 
-/* Olive Outline Button */
+.btn-olive:active {
+  transform: scale(0.96);
+}
+
+/* Compact, Minimalist Olive Outline Button */
 .btn-olive-outline {
   background-color: #FFFFFF;
-  color: #79A03F;
-  border: 2px solid #79A03F;
+  color: #2D1E18;
+  border: 1.5px solid rgba(45, 30, 24, 0.15);
   font-weight: 700;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
 }
 
 .btn-olive-outline:hover {
-  background-color: #79A03F;
-  color: #FFFFFF;
-  box-shadow: 0 6px 20px -4px rgba(121, 160, 63, 0.35);
-  transform: translateY(-1px);
+  border-color: #79A03F;
+  color: #79A03F;
+  background-color: #FFFFFF;
 }
 
-/* Subtle scrollbar */
+.btn-olive-outline:active {
+  transform: scale(0.96);
+}
+
+/* Continuous Falling Bakery Keyframes */
+@keyframes bakeryFall1 {
+  0% {
+    transform: translateY(-80px) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.65;
+  }
+  85% {
+    opacity: 0.65;
+  }
+  100% {
+    transform: translateY(105vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes bakeryFall2 {
+  0% {
+    transform: translateY(-80px) rotate(0deg) translateX(0px);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.6;
+    transform: translateY(20vh) rotate(-45deg) translateX(15px);
+  }
+  80% {
+    opacity: 0.6;
+    transform: translateY(80vh) rotate(-270deg) translateX(-15px);
+  }
+  100% {
+    transform: translateY(105vh) rotate(-360deg) translateX(0px);
+    opacity: 0;
+  }
+}
+
+@keyframes bakeryFall3 {
+  0% {
+    transform: translateY(-80px) rotate(0deg) translateX(0px);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.7;
+    transform: translateY(25vh) rotate(60deg) translateX(-18px);
+  }
+  75% {
+    opacity: 0.7;
+    transform: translateY(75vh) rotate(220deg) translateX(18px);
+  }
+  100% {
+    transform: translateY(105vh) rotate(360deg) translateX(0px);
+    opacity: 0;
+  }
+}
+
+.animate-bakery-fall-1 {
+  animation: bakeryFall1 linear infinite;
+  will-change: transform, opacity;
+}
+
+.animate-bakery-fall-2 {
+  animation: bakeryFall2 linear infinite;
+  will-change: transform, opacity;
+}
+
+.animate-bakery-fall-3 {
+  animation: bakeryFall3 linear infinite;
+  will-change: transform, opacity;
+}
+
+/* Clean scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #F49EAF;
+  background: #FFB7C5;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #79A03F;
-  border-radius: 4px;
+  border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
