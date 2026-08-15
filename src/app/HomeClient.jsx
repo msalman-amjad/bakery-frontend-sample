@@ -45,11 +45,11 @@ export default function HomeClient() {
         {/* 1. Hero Section */}
         <Hero onExploreMenu={scrollToFeatured} />
 
-        {/* 2. Featured Bestsellers */}
-        <FeaturedProducts />
-
-        {/* 4. Dietary & Craftsmanship */}
+        {/* 2. Dietary & Craftsmanship */}
         <DietarySection />
+
+        {/* 3. Featured Bestsellers */}
+        <FeaturedProducts />
 
         {/* 5. Reviews */}
         <Reviews />
