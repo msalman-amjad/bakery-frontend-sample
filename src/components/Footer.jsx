@@ -57,9 +57,9 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="/#how-to-order" className="hover:text-[#79A03F] transition-colors">
+                <Link href="/how-it-works" className="hover:text-[#79A03F] transition-colors">
                   How It Works
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="/#dietary" className="hover:text-[#79A03F] transition-colors">

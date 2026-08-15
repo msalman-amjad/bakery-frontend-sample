@@ -1,19 +1,17 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Navbar from '../components/Navbar';
-import Hero from '../components/Hero';
-import FeaturedProducts from '../components/FeaturedProducts';
-import DietarySection from '../components/DietarySection';
-import Reviews from '../components/Reviews';
-import InstagramFeed from '../components/InstagramFeed';
-import Footer from '../components/Footer';
-import FloatingBakeryItems from '../components/FloatingBakeryItems';
-import { bakeryInfo } from '../data/menuData';
-import { useCart } from '../context/CartContext';
-import { ShoppingBag, MessageCircle, ArrowUp } from 'lucide-react';
+import Link from 'next/link';
+import Navbar from '../../components/Navbar';
+import HowToOrder from '../../components/HowToOrder';
+import DietarySection from '../../components/DietarySection';
+import Footer from '../../components/Footer';
+import FloatingBakeryItems from '../../components/FloatingBakeryItems';
+import { bakeryInfo } from '../../data/menuData';
+import { useCart } from '../../context/CartContext';
+import { ChevronRight, Home, ShoppingBag, MessageCircle, ArrowUp } from 'lucide-react';
 
-export default function HomeClient() {
+export default function HowItWorksClient() {
   const { totalCartCount, isCartOpen, setIsCartOpen } = useCart();
   const [showScrollTop, setShowScrollTop] = useState(false);
 
@@ -25,37 +23,55 @@ export default function HomeClient() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToFeatured = () => {
-    const el = document.getElementById('featured-treats');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <div className="min-h-screen bg-[#FFB7C5] flex flex-col selection:bg-[#79A03F] selection:text-white w-full overflow-x-hidden relative">
-      {/* Decorative Subtle Background Animation */}
+      {/* Decorative Falling Bakery Background Animation */}
       <FloatingBakeryItems />
 
       {/* 1. Header Navigation */}
       <Navbar />
 
-      {/* 2. Main Content Landmark */}
+      {/* 2. Main Landmark */}
       <main id="main-content" role="main" className="flex-1 bg-transparent w-full relative z-10">
-        {/* 1. Hero Section */}
-        <Hero onExploreMenu={scrollToFeatured} />
+        
+        {/* Semantic Breadcrumb Navigation */}
+        <nav aria-label="Breadcrumb" className="border-b border-[#2D1E18]/10 py-2.5 sm:py-3.5 bg-[#FFB7C5]">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+            
+            <ol role="list" className="flex items-center gap-1.5 text-xs text-[#2D1E18]/80 font-bold">
+              <li>
+                <Link href="/" className="hover:text-[#79A03F] flex items-center gap-1">
+                  <Home className="w-3.5 h-3.5" aria-hidden="true" />
+                  <span>Home</span>
+                </Link>
+              </li>
+              <li aria-hidden="true">
+                <ChevronRight className="w-3 h-3 text-[#2D1E18]/40" />
+              </li>
+              <li>
+                <span aria-current="page" className="text-[#2D1E18] font-black">
+                  How It Works
+                </span>
+              </li>
+            </ol>
 
-        {/* 2. Featured Bestsellers */}
-        <FeaturedProducts />
+            <div className="text-[11px] text-[#2D1E18]/80 font-bold">
+              Lahore Fresh Bake Cycle
+            </div>
 
-        {/* 4. Dietary & Craftsmanship */}
-        <DietarySection />
+          </div>
+        </nav>
 
-        {/* 5. Reviews */}
-        <Reviews />
+        {/* How It Works Order Process */}
+        <div className="py-6 sm:py-10">
+          <HowToOrder />
+        </div>
 
-        {/* 6. Instagram Showcase */}
-        <InstagramFeed />
+        {/* Dietary Standards & Quality */}
+        <div className="pb-12 sm:pb-16">
+          <DietarySection />
+        </div>
+
       </main>
 
       {/* 3. Footer */}

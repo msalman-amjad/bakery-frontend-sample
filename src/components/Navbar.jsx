@@ -31,7 +31,7 @@ export default function Navbar() {
 
   const navLinks = [
     { name: 'Menu', href: '/menu' },
-    { name: 'How It Works', href: '/#how-to-order' },
+    { name: 'How It Works', href: '/how-it-works' },
     { name: 'Dietary', href: '/#dietary' },
     { name: 'Reviews', href: '/#reviews' },
   ];
