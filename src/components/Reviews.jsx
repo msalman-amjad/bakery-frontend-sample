@@ -29,10 +29,10 @@ export default function Reviews() {
           </p>
         </header>
 
-        {/* Semantic Testimonial List */}
-        <ul role="list" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4">
+        {/* Semantic Testimonial List with Equal Height Stretch */}
+        <ul role="list" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 items-stretch">
           {customerReviews.map((review) => (
-            <li key={review.id}>
+            <li key={review.id} className="h-full flex flex-col">
               <figure className="h-full rounded-2xl sm:rounded-3xl bg-white p-4 sm:p-5 border-2 border-[#79A03F]/20 hover:border-[#79A03F] shadow-md flex flex-col justify-between space-y-3 m-0 transition-all">
                 <div className="space-y-2">
                   {/* 5-star rating */}
@@ -50,7 +50,7 @@ export default function Reviews() {
                   </blockquote>
                 </div>
 
-                <figcaption className="pt-2.5 border-t border-slate-100">
+                <figcaption className="pt-2.5 mt-auto border-t border-slate-100">
                   <cite className="not-italic block text-xs font-black text-[#2D1E18]">
                     {review.name}
                   </cite>

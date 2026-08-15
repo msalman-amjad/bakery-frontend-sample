@@ -51,11 +51,11 @@ export default function HomeClient() {
         {/* 3. Featured Bestsellers */}
         <FeaturedProducts />
 
-        {/* 5. Reviews */}
-        <Reviews />
-
-        {/* 6. Instagram Showcase */}
+        {/* 4. Instagram Showcase */}
         <InstagramFeed />
+
+        {/* 5. Reviews (Loved in Lahore - above footer) */}
+        <Reviews />
       </main>
 
       {/* 3. Footer */}
